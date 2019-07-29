@@ -11,7 +11,7 @@ class DoubleLedgerParties(Document):
     pass
 
 def create_invoice_adj_jv(self,cdt):
-    if self.doctype == 'Sales Invoice':
+    if self.doctype == 'Sales Invoice' and self.is_pos == 0:
         doc = frappe.get_doc(self,cdt)
         customer_list = frappe.get_list('Double Ledger Parties', filters= {'primary_role':'Supplier','customer':self.customer}, fields = "*" )
         customer_dp = None
@@ -54,7 +54,7 @@ def create_invoice_adj_jv(self,cdt):
         jv.save()
         jv.submit()
 
-    else:    
+    elif self.doctype == 'Purchase Invoice' and self.is_paid == 0: 
         doc = frappe.get_doc(self,cdt)
         supplier_list = frappe.get_list('Double Ledger Parties', filters= {'primary_role':'Customer','supplier':self.supplier}, fields = "*" )
         customer_dp = None
@@ -107,5 +107,12 @@ def cancel_adjusted_jv(self,cdt):
         jv_doc = frappe.get_doc('Journal Entry', jv_name)
         jv_doc.cancel()
         frappe.msgprint("Journal Entry " + jv_name + " cancelled")
+
+
+def prevent_linked_jv_cancellation(self,cdt):
+    for f in self.accounts:
+        if f.reference_type!= None:
+            frappe.throw("Journal Entry linked with {0} {1}".format(f.reference_type, f.reference_name))
+
        
         

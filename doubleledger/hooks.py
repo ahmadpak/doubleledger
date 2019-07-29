@@ -95,6 +95,9 @@ doc_events = {
     "Purchase Invoice" :{
         "on_submit" : "doubleledger.double_ledger_management.doctype.double_ledger_parties.double_ledger_parties.create_invoice_adj_jv",
         "on_cancel" : "doubleledger.double_ledger_management.doctype.double_ledger_parties.double_ledger_parties.cancel_adjusted_jv"
+    },
+    "Journal Entry" :{
+        "on_cancel" : "doubleledger.double_ledger_management.doctype.double_ledger_parties.double_ledger_parties.prevent_linked_jv_cancellation"
     }
 }
 
