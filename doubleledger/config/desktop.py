@@ -5,9 +5,11 @@ from frappe import _
 def get_data():
 	return [
 		{
+			"module_name": "Double Ledger Management",
 			"color": "blue",
 			"icon": "octicon octicon-book",
 			"label": _("Double Ledger Management"),
+			"type": "module",
 			"items": [
 				{
 					"type": "doctype",
