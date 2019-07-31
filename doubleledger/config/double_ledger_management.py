@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 import frappe
 from frappe import _
 
-def get_date():
+def get_data():
     return[
         {
             "lable": ("Setup"),
@@ -12,7 +12,7 @@ def get_date():
 					"name": "Double Ledger Parties",
 					"onboard": 1,
 					"lable": _("Double Ledger Parties"),
-					"description": _(" Managing Parties that act as both customers and suppliers")
+					"description": _(" Managing Parties that act as both customers and suppliers"),
 				}
 			]
         }

@@ -6,11 +6,12 @@ def get_data():
 	return [
 		{
 			"module_name": "Double Ledger Management",
-			"catagory": "Modules",
+			"category": "Modules",
 			"label": _("Double Ledger Management"),
 			"color": "blue",
 			"icon": "octicon octicon-book",
-			"type": "module"
+			"type": "module",
+			"onboard_present": 1
 			
 		}
 	]
