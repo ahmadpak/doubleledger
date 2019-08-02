@@ -31,6 +31,19 @@ app_license = "MIT"
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
+
+fixtures = [{
+    'dt': 'Custom Field', 'filters':[
+        [
+            'name', 'in', [
+                "Sales Invoice-no_double_ledger",
+                "Purchase Invoice-no_double_ledger"
+            ]
+        ]
+    ]
+}]
+
+
 # Home Pages
 # ----------
 

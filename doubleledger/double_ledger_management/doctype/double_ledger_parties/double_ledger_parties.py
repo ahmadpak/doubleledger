@@ -11,7 +11,7 @@ class DoubleLedgerParties(Document):
     pass
 
 def create_invoice_adj_jv(self,cdt):
-    if self.doctype == 'Sales Invoice' and self.is_pos == 0:
+    if self.doctype == 'Sales Invoice' and self.is_pos == 0 and self.no_double_ledger==0:
         doc = frappe.get_doc(self,cdt)
         customer_list = frappe.get_list('Double Ledger Parties', filters= {'primary_role':'Supplier','customer':self.customer}, fields = "*" )
         customer_dp = None
@@ -55,7 +55,7 @@ def create_invoice_adj_jv(self,cdt):
             jv.save()
             jv.submit()
 
-    elif self.doctype == 'Purchase Invoice' and self.is_paid == 0: 
+    elif self.doctype == 'Purchase Invoice' and self.is_paid == 0 and self.no_double_ledger==0: 
         doc = frappe.get_doc(self,cdt)
         supplier_list = frappe.get_list('Double Ledger Parties', filters= {'primary_role':'Customer','supplier':self.supplier}, fields = "*" )
         customer_dp = None
