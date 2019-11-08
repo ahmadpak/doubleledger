@@ -41,14 +41,14 @@ def create_invoice_adj_jv(self,cdt):
                 'party': customer_dp,
                 'reference_type': 'Sales Invoice',
                 'reference_name': doc.name,
-                'credit_in_account_currency': doc.grand_total
+                'credit_in_account_currency': doc.outstanding_amount
             })
         #Entry for Supplier    
             jv.append('accounts', {
                 'account': supplier_account_type,
                 'party_type': 'Supplier',
                 'party': supplier_dp,
-                'debit_in_account_currency': doc.grand_total,
+                'debit_in_account_currency': doc.outstanding_amount,
                 'is_advance': 'Yes'
             })
 
@@ -83,7 +83,7 @@ def create_invoice_adj_jv(self,cdt):
                 'account': customer_account_type,
                 'party_type': primary_role_dp,
                 'party': customer_dp,
-                'credit_in_account_currency': doc.grand_total,
+                'credit_in_account_currency': doc.outstanding_amount,
                 'is_advance': 'Yes'
             })
         #Entry for Supplier    
@@ -91,7 +91,7 @@ def create_invoice_adj_jv(self,cdt):
                 'account': supplier_account_type,
                 'party_type': 'Supplier',
                 'party': supplier_dp,
-                'debit_in_account_currency': doc.grand_total,
+                'debit_in_account_currency': doc.outstanding_amount,
                 'reference_type': 'Purchase Invoice',
                 'reference_name': doc.name
             })
