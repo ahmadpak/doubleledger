@@ -9,6 +9,9 @@ frappe.ui.form.on('Payment Entry',{
 			callback:function(r){
 				frm.doc.primary_role = r.message
 				frm.refresh_field('primary_role')
+				if (frm.doc.party_type!= frm.doc.primary_role){
+					frappe.msgprint('Party Type and Primary Role does not match, please double check your transaction!')
+				}
 			}
 		})
 	}
